@@ -7,10 +7,11 @@ def main():
     """
     Main
     """
-    import_data()
+    data = import_data()
+    data = rename_columns(data)
 
     
-def import_data():
+def import_data() -> pd.DataFrame:
     """
     Import csv file as a dataframe
     Output: data [pd.DataFrame]
@@ -18,6 +19,17 @@ def import_data():
     data = pd.read_csv("data/iris.csv")
     print(data.shape)
     return data
+
+def rename_columns(data: pd.DataFrame) -> pd.DataFrame:
+    """
+    Doc
+    """
+    data_renamed = data.rename({"sepal.length": 'sepal_length',
+                                "sepal.width": 'sepal_width',
+                                "petal.lenght": 'petal_length',
+                                "petal.width": 'petal_width'})
+    
+    return data_renamed
 
 
 if __name__ == '__main__':
